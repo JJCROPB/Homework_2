@@ -1,0 +1,344 @@
+---
+title: '2'
+author: "Juan Jimenez"
+date: '2022-04-12'
+output:
+  pdf_document: default
+  html_document: default
+---
+````{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE) 
+knitr::opts_knit$set(root.dir=normalizePath('..//')) 
+#Calling the libraries
+#library(tidyverse)
+```
+
+```{r}
+
+########################ask yourself if the h2 suppose to be constant or change? 
+cc <- read.csv("DATA/ppj220030-sup-0002-tables1.csv")
+table(cc$date)
+
+### adding replication information
+cc$Rep <- "Rep2"
+cc[cc$Row< 3000,] $Rep <- "Rep1"
+
+###Checking our data
+head(cc)
+tail(cc)
+dim(cc)
+table(cc$Treatment)
+table(cc$Rep)
+table(cc$date)
+
+
+
+```
+
+```{r}
+#### sub-setting for date 6 Jul
+d1 <- subset(cc, date %in% "6-Jul")
+head(d1)
+tail(d1)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit1 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d1)
+
+#generating ANOVA table 
+summary(aov(fit1))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out1 <- summary(aov(fit1))[[1]]
+vprogeny1 <- (out1[1,3] - out1[4,3])/(2*2)
+
+
+#Calculating H2
+h2_1 = vprogeny1/((vprogeny1 + out1[4,3]/(2*2)))
+
+##H2 is very high 0.89. This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+####For in the date 12 Aug
+d2 <- subset(cc, date %in% "12-Aug")
+head(d2)
+tail(d2)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit2 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d2)
+
+#generating ANOVA table 
+summary(aov(fit2))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out2 <- summary(aov(fit2))[[1]]
+vprogeny2 <- (out2[1,3] - out2[4,3])/(2*2)
+
+
+#Calculating H2
+h2_2 = vprogeny2/((vprogeny2 + out2[4,3]/(2*2)))
+
+##H2 is very high 0.94. This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+####For in the date 14 Aug
+d3 <- subset(cc, date %in% "14-Aug")
+head(d3)
+tail(d3)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit3 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d3)
+
+#generating ANOVA table 
+summary(aov(fit3))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out3 <- summary(aov(fit3))[[1]]
+vprogeny3 <- (out3[1,3] - out3[4,3])/(2*2)
+
+
+#Calculating H2
+h2_3 = vprogeny3/((vprogeny3 + out3[4,3]/(2*2)))
+
+##H2 is very high 0.93 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+
+####For in the date 16 Aug
+d4 <- subset(cc, date %in% "16-Aug")
+head(d4)
+tail(d4)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit4 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d4)
+
+#generating ANOVA table 
+summary(aov(fit4))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out4 <- summary(aov(fit4))[[1]]
+vprogeny4 <- (out4[1,3] - out4[4,3])/(2*2)
+
+#Calculating H2
+h2_4 = vprogeny4/((vprogeny4 + out4[4,3]/(2*2)))
+
+##H2 is very high 0.92 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+####For in the date 20 Aug
+d5 <- subset(cc, date %in% "20-Aug")
+head(d5)
+tail(d5)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit5 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d5)
+
+#generating ANOVA table 
+summary(aov(fit5))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out5 <- summary(aov(fit5))[[1]]
+vprogeny5 <- (out5[1,3] - out5[4,3])/(2*2)
+
+#Calculating H2
+h2_5 = vprogeny5/((vprogeny5 + out5[4,3]/(2*2)))
+
+##H2 is very high 0.92 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+
+####For in the date 22 Aug
+d6 <- subset(cc, date %in% "22-Aug")
+head(d6)
+tail(d6)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit6 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d6)
+
+#generating ANOVA table 
+summary(aov(fit6))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out6 <- summary(aov(fit6))[[1]]
+vprogeny6 <- (out6[1,3] - out6[4,3])/(2*2)
+
+#Calculating H2
+h2_6 = vprogeny6/((vprogeny6 + out6[4,3]/(2*2)))
+
+##H2 is very high 0.93 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+
+####For in the date 23 Aug
+d7 <- subset(cc, date %in% "23-Aug")
+head(d7)
+tail(d7)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit7 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d7)
+
+#generating ANOVA table 
+summary(aov(fit7))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out7 <- summary(aov(fit7))[[1]]
+vprogeny7 <- (out7[1,3] - out7[4,3])/(2*2)
+
+#Calculating H2
+h2_7 = vprogeny7/((vprogeny7 + out7[4,3]/(2*2)))
+
+##H2 is very high 0.93 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+####For in the date 26 Aug
+d8 <- subset(cc, date %in% "26-Aug")
+head(d8)
+tail(d8)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit8 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d8)
+
+#generating ANOVA table 
+summary(aov(fit8))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out8 <- summary(aov(fit8))[[1]]
+vprogeny8 <- (out8[1,3] - out8[4,3])/(2*2)
+
+#Calculating H2
+h2_8 = vprogeny8/((vprogeny8 + out8[4,3]/(2*2)))
+
+##H2 is very high 0.92 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+####For in the date 30 Aug
+d9 <- subset(cc, date %in% "30-Aug")
+head(d9)
+tail(d9)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit9 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d9)
+
+#generating ANOVA table 
+summary(aov(fit9))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out9 <- summary(aov(fit9))[[1]]
+vprogeny9 <- (out9[1,3] - out9[4,3])/(2*2)
+
+#Calculating H2
+h2_9 = vprogeny9/((vprogeny9 + out9[4,3]/(2*2)))
+
+##H2 is very high 0.91 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+####For in the date 1 Sep
+d10 <- subset(cc, date %in% "1-Sep")
+head(d10)
+tail(d10)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit10 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d10)
+
+#generating ANOVA table 
+summary(aov(fit10))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out10 <- summary(aov(fit10))[[1]]
+vprogeny10 <- (out10[1,3] - out10[4,3])/(2*2)
+
+#Calculating H2
+h2_10 = vprogeny10/((vprogeny10 + out10[4,3]/(2*2)))
+
+##H2 is very high 0.93 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+####For in the date 3 Sep
+d11 <- subset(cc, date %in% "3-Sep")
+head(d11)
+tail(d11)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit11 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d11)
+
+#generating ANOVA table 
+summary(aov(fit11))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out11 <- summary(aov(fit11))[[1]]
+vprogeny11 <- (out11[1,3] - out11[4,3])/(2*2)
+
+#Calculating H2
+h2_11 = vprogeny11/((vprogeny11 + out11[4,3]/(2*2)))
+
+##H2 is very high 0.92 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+
+####For in the date 5 Sep
+d12 <- subset(cc, date %in% "5-Sep")
+head(d12)
+tail(d12)
+### Defining the model to get multiple linear regression for date 6 Jul
+fit12 <- lm(Canopy_Coverage ~ Genotype + Treatment + Genotype:Treatment + Rep, 
+          data=d12)
+
+#generating ANOVA table 
+summary(aov(fit12))
+
+#As the p-value is less than the significance level 0.05, we can conclude that there are significant differences between the genotypes, treatments and reps highlighted with “***" in the model summary (ANOVA).
+
+##Calculating Vprogeny
+out12 <- summary(aov(fit12))[[1]]
+vprogeny12 <- (out12[1,3] - out12[4,3])/(2*2)
+
+#Calculating H2
+h2_12 = vprogeny12/((vprogeny12 + out12[4,3]/(2*2)))
+
+##H2 is very high 0.94 This means that canopy coverage is highly influenced by genetic effects more than environmental (nitrogen level) effects.
+```
+
+```{r}
+#Creating a table with dates and h2 values
+datest=table(cc$date)
+datest
+typeof(datest)
+mytable = data.frame(date=c("06-Jul","12-Aug","14-Aug","16-Aug","20-Aug","22-Aug","23-Aug","26-Aug","30-Aug","01-Sep","03-Sep","05-Sep"),
+                     h2=c(h2_1,h2_2,h2_3,h2_4,h2_5,h2_6,h2_7,h2_8,h2_9,h2_10,h2_11,h2_12))
+
+mytable[order(mytable$date),]
+mytable
+class(mytable)
+
+mytable$date=as.Date(mytable$date, "%d-%b")
+
+#Visualize the data
+library(ggplot2)
+
+ggplot(mytable,aes(date,h2,color="h2 dinamic"))+
+  geom_point(colour="black", size=3)+ geom_line(colour="blue")+ labs(title="Dinamic of the h2 over time")+
+  theme_bw()+geom_hline(yintercept=mean(mytable$h2),color="red")
+
+```
+
+```{r}
+#My Hypothesis is that according with plant physiology, the more older the crop, the more canopy coverage should have, until certain point in which the crop get older and the leaves die. So at the beginning we should have an increase but later, it should be constant and eventually at the old age it should decrease.
+
+#According to the graph, the h2 value is increasing over time. We can see that the lowest value is in the early growing stage. However, h2 is very dynamic. It have a lot of fluctuations. Sometimes it get high but in other moments it get low.
+#We can see that except for the first data point, the h2 is almost constant and close to the h2 mean over time.
+
+#The heritability can change over time because the variance of the genetic values can change due to environmental factors, in this case, the Nitrogen level.
+
+#At the first dates, maybe the plant is in a growing stage in which do not express a lot the genes but is very active in physiological processes and Nitrogen level could play an important factor. However, after time pass, the plant can change the dynamic and genetic factors could be more expressed as we can see in the later dates in the graph.
+
+#According to the graph, I reject the null hypothesis. The h2 dynamic over time in the graph is showing an increase of h2, then the data vary a lot, sometime increase, sometimes decrease. This can be due to errors when taking the data. Rodene et al(2021) mentioned that depending on the angle of the UAV, the values can vary. Also, depending on the weather (sunligh, clouds etc), the photos can vary and so the canopy value. There are a lot of mistakes that could happens when taking the photos.
+```
